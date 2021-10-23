@@ -25,3 +25,9 @@ Manifest.toml
 
 # VS code
 .vscode/
+
+# images
+images/
+
+# bin
+bin/
