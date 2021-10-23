@@ -4,7 +4,7 @@
 #include <argparse.hpp>
 
 struct Parameters {
-    std::string image_file_path;
+    std::string image_filename;
     std::string algorithm;
     float angle;
     float percent;
@@ -71,7 +71,7 @@ Parameters parse_arguments(int argc, char* argv[]){
         exit(0);
     }
 
-    params.image_file_path = program.get<std::string>("image");
+    params.image_filename = program.get<std::string>("image");
     params.algorithm = program.get<std::string>("--algorithm");
     params.angle = program.get<float>("--angle");
     params.percent = program.get<float>("--percent");
