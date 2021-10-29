@@ -47,7 +47,7 @@ void ImageMatrix::load(std::string filename) {
 
 void ImageMatrix::save(std::string filename, std::string image_type) {
     if (image_type == "png" || "PNG") {
-        std::cout << "saving image" << std::endl;
+        std::cout << "saving image to: " << filename << std::endl;
         stbi_write_png(filename.c_str(), m_width, m_height, m_channels, m_image_buffer, m_width * m_channels);
     }
 };
