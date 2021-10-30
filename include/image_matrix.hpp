@@ -20,35 +20,57 @@ using Row = std::vector<Pixel>;
 
 class Image {
     public:
-    int m_width;
-    int m_height;
-    int m_channels; 
+    int width;
+    int height;
+    int channels; 
     
-    std::vector<Row> m_rows;
+    std::vector<Row> rows;
 
     Image() {};
 
     void load(std::string filename);
     void save(std::string filename, std::string image_type);
+    void sort_image(std::string sort_method, int color);
 
     private:
-    unsigned char *m_image_buffer;
+    unsigned char *image_buffer;
 
 };
 
 void Image::load(std::string filename) {
-    m_image_buffer = stbi_load(filename.c_str(), &m_width, &m_height, &m_channels, 0);
-    if (m_image_buffer == NULL) {
+    image_buffer = stbi_load(filename.c_str(), &width, &height, &channels, 0);
+    if (image_buffer == NULL) {
         std::cout << "Error loading image: " << filename << std::endl;
         exit(1);
     }
-    std::cout << "(" << m_width << ", " << m_height << ") - "<< m_channels << std::endl;
+    std::cout << "(" << width << ", " << height << ") - "<< channels << std::endl;
 };
 
 void Image::save(std::string filename, std::string image_type) {
     if (image_type == "png" || "PNG") {
         std::cout << "saving image to: " << filename << std::endl;
-        stbi_write_png(filename.c_str(), m_width, m_height, m_channels, m_image_buffer, m_width * m_channels);
+        stbi_write_png(filename.c_str(), width, height, channels, image_buffer, width * channels);
     }
 };
+
+void Image::sort_image(std::string sort_method, int color) {
+    int offset;
+    unsigned char *pixel_offset;
+    std::vector<uint8_t> image_row = std::vector<uint8_t> (this->width);
+    
+    for (int row=0; row<this->height; row++) {
+        for (int col=0; col<this->width; col++) {
+            // pixel_offset = image + (row + width * col) * channels;
+            pixel_offset = this->image_buffer + (col + this->width * row) * this->channels;
+            image_row[col] = pixel_offset[color];
+        }
+        
+        std::sort(image_row.begin(), image_row.end());
+
+        for (int col=0; col<this->width; col++) {
+            offset = (col + this->width * row) * this->channels + color;
+            this->image_buffer[offset] = image_row[col];
+        }
+    }
+}
 
