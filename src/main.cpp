@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
 
     Image image;
     image.load(params.image_filename)
-        .sort_image("standard", 4)
+        .sort_image("standard", 4, true)
         .save(std::string("images/sorted.png"), "png");
 
     // stbi_image_free(image);
