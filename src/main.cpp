@@ -9,9 +9,9 @@
 
 int main(int argc, char* argv[]) {
 
-    auto params = parse_arguments(argc, argv);
+    auto args = parse_arguments(argc, argv);
 
-    if (params.verbose == true) {
+    if (args.verbose == true) {
         std::cout << "image: "      << params.image_filename << std::endl;
         std::cout << "algorithm: "  << params.algorithm << std::endl;
         std::cout << "angle: "      << params.angle << std::endl;
@@ -21,8 +21,8 @@ int main(int argc, char* argv[]) {
     }
 
     Image image;
-    image.load(params.image_filename)
-        .sort_image("standard", 4, true)
+    image.load(args.image_filename)
+        .sort_image("standard", 4, args.reverse)
         .save(std::string("images/sorted.png"), "png");
 
     // stbi_image_free(image);
