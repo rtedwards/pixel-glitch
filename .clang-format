@@ -4,3 +4,4 @@ ColumnLimit: 120
 IndentWidth: 4
 ColumnLimit: 0
 AccessModifierOffset: -2
+Cpp11BracedListStyle: false
