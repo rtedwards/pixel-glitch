@@ -26,41 +26,49 @@ class Image {
     
     std::vector<Row> rows;
 
-    Image() {};
+    Image();
 
-    void load(std::string filename);
-    void save(std::string filename, std::string image_type);
-    void sort_image(std::string sort_method, int color);
+    Image& load(std::string filename);
+    Image& save(std::string filename, std::string image_type);
+    Image& sort_image(std::string sort_method, int color);
 
     private:
     unsigned char *image_buffer;
 
 };
 
-void Image::load(std::string filename) {
-    image_buffer = stbi_load(filename.c_str(), &width, &height, &channels, 0);
+// Image::Image(std::string filename) {
+//     // Could probably run the whole load, sort, save in constructor
+//     image_buffer = this->load(filename);
+// }
+
+Image::Image() {};
+
+Image& Image::load(std::string filename) {
+    image_buffer = stbi_load(filename.c_str(), &this->width, &this->height, &this->channels, 0);
     if (image_buffer == NULL) {
         std::cout << "Error loading image: " << filename << std::endl;
         exit(1);
     }
-    std::cout << "(" << width << ", " << height << ") - "<< channels << std::endl;
+    std::cout << "(" << this->width << ", " << this->height << ") - "<< this->channels << std::endl;
+    return *this;
 };
 
-void Image::save(std::string filename, std::string image_type) {
+Image& Image::save(std::string filename, std::string image_type) {
     if (image_type == "png" || "PNG") {
         std::cout << "saving image to: " << filename << std::endl;
         stbi_write_png(filename.c_str(), width, height, channels, image_buffer, width * channels);
     }
+    return *this;
 };
 
-void Image::sort_image(std::string sort_method, int color) {
+Image& Image::sort_image(std::string sort_method, int color) {
     int offset;
     unsigned char *pixel_offset;
     std::vector<uint8_t> image_row = std::vector<uint8_t> (this->width);
     
     for (int row=0; row<this->height; row++) {
         for (int col=0; col<this->width; col++) {
-            // pixel_offset = image + (row + width * col) * channels;
             pixel_offset = this->image_buffer + (col + this->width * row) * this->channels;
             image_row[col] = pixel_offset[color];
         }
@@ -72,5 +80,7 @@ void Image::sort_image(std::string sort_method, int color) {
             this->image_buffer[offset] = image_row[col];
         }
     }
+
+    return *this;
 }
 

@@ -21,10 +21,9 @@ int main(int argc, char* argv[]) {
     }
 
     Image image;
-    image.load(params.image_filename);
+    image.load(params.image_filename)
+        .sort_image("standard", 4)
+        .save(std::string("images/sorted.png"), "png");
 
-    image.sort_image("standard", 4);
-
-    image.save(std::string("images/sorted.png"), "png");
     // stbi_image_free(image);
 }
