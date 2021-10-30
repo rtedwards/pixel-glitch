@@ -18,7 +18,7 @@ struct Pixel {
 
 using Row = std::vector<Pixel>;
 
-class ImageMatrix {
+class Image {
     public:
     int m_width;
     int m_height;
@@ -26,7 +26,7 @@ class ImageMatrix {
     
     std::vector<Row> m_rows;
 
-    ImageMatrix() {};
+    Image() {};
 
     void load(std::string filename);
     void save(std::string filename, std::string image_type);
@@ -36,7 +36,7 @@ class ImageMatrix {
 
 };
 
-void ImageMatrix::load(std::string filename) {
+void Image::load(std::string filename) {
     m_image_buffer = stbi_load(filename.c_str(), &m_width, &m_height, &m_channels, 0);
     if (m_image_buffer == NULL) {
         std::cout << "Error loading image: " << filename << std::endl;
@@ -45,7 +45,7 @@ void ImageMatrix::load(std::string filename) {
     std::cout << "(" << m_width << ", " << m_height << ") - "<< m_channels << std::endl;
 };
 
-void ImageMatrix::save(std::string filename, std::string image_type) {
+void Image::save(std::string filename, std::string image_type) {
     if (image_type == "png" || "PNG") {
         std::cout << "saving image to: " << filename << std::endl;
         stbi_write_png(filename.c_str(), m_width, m_height, m_channels, m_image_buffer, m_width * m_channels);

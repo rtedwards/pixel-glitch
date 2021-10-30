@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
     }
 
     // read image
-    ImageMatrix matrix;
+    Image matrix;
     matrix.load(params.image_filename);
     matrix.save(std::string("images/sorted.png"), "png");
 
