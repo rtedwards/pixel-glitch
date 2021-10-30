@@ -59,6 +59,8 @@ Image &Image::sort_image(std::string sort_method, int color, bool reverse) {
         for (int col = 0; col < this->width; col++) {
             pixel_offset = this->image_buffer + (col + this->width * row) * this->channels;
 
+            // TODO: only use a pointer to offset to avoid creating and copying 4 new variables
+            // maybe use a macro of colors to numbers for readability
             uint8_t red = pixel_offset[0];
             uint8_t green = pixel_offset[1];
             uint8_t blue = pixel_offset[2];
@@ -66,14 +68,11 @@ Image &Image::sort_image(std::string sort_method, int color, bool reverse) {
             image_row[col] = Pixel{ red, green, blue, alpha, (uint8_t)(blue) };
         }
 
-        // std::bind solution
-        // using namespace std::placeholders;
-        // std::sort(image_row.begin(), image_row.end(), std::bind(compare_pixels, _1, _2, reverse));
-
-        // lambda solution
         std::sort(image_row.begin(), image_row.end(), [reverse](Pixel x, Pixel y) { return compare_pixels(x, y, reverse); });
 
         for (int col = 0; col < this->width; col++) {
+            // TODO: Create new image_buffer and fill it with what each pixel offset points to
+            // this let's us loop by steps of 4 rather than 1
             offset = (col + this->width * row) * this->channels;
             this->image_buffer[offset] = image_row[col].red;
             this->image_buffer[offset + 1] = image_row[col].green;
