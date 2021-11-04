@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
 
     Image image;
     image.load(args.image_filename)
-        .sort_image("standard", 3, args.reverse)
+        .sort_image(args.shape, 3, args.reverse)
         .save(std::string("images/sorted.png"), "png");
 
     // stbi_image_free(image);
