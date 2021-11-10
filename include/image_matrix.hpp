@@ -67,34 +67,14 @@ std::vector<PixelRow> &Image::create_image_matrix(std::string shape) {
 Image &Image::sort_image(std::string sort_method, int color, bool reverse) {
     this->matrix = this->create_image_matrix(sort_method);
 
-    // int offset;
-    // unsigned char *pixel_offset;
-    // std::vector<Pixel> image_row = std::vector<Pixel>(this->width);
-
-    // for (int i = 0; i < this->height; row++) {
-    //     for (int col = 0; col < this->width; col++) {
-    //         pixel_offset = this->image_buffer + (col + this->width * row) * this->channels;
-
-    //         // TODO: only use a pointer to offset to avoid creating and copying 4 new variables
-    //         // maybe use a macro of colors to numbers for readability
-    //         uint8_t red = pixel_offset[0];
-    //         uint8_t green = pixel_offset[1];
-    //         uint8_t blue = pixel_offset[2];
-    //         uint8_t alpha = pixel_offset[3];
-    //         image_row[col] = Pixel{ red, green, blue, alpha, (uint8_t)(blue) };
-    //     }
-    // }
-
     for (auto &row : matrix) {
         std::sort(row.begin(), row.end(), [reverse](Pixel x, Pixel y) { return compare_pixels(x, y, reverse); });
     }
 
+    int offset;
     for (int row = 0; row < this->height; row++) {
         for (int col = 0; col < this->width; col++) {
-            // TODO: Create new image_buffer and fill it with what each pixel offset points to
-            // this let's us loop by steps of 4 rather than 1
-
-            int offset = (col + this->width * row) * this->channels;
+            offset = (col + this->width * row) * this->channels;
             this->image_buffer[offset] = matrix[row][col].red;
             this->image_buffer[offset + 1] = matrix[row][col].green;
             this->image_buffer[offset + 2] = matrix[row][col].blue;
