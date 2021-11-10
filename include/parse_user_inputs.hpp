@@ -13,9 +13,9 @@ struct Parameters {
     bool verbose;
 } params;
 
-Parameters parse_arguments(int argc, char* argv[]){
+Parameters parse_arguments(int argc, char* argv[]) {
     argparse::ArgumentParser program("program name");
-    
+
     program.add_argument("image")
         .help("path to image file")
         .required();
@@ -30,7 +30,7 @@ Parameters parse_arguments(int argc, char* argv[]){
             }
             return std::string{ "quicksort" };
         });
-    
+
     program.add_argument("-a", "--angle")
         .help("sorting angle (degrees)")
         .default_value(0.0f)
@@ -54,7 +54,7 @@ Parameters parse_arguments(int argc, char* argv[]){
             if (std::find(choices.begin(), choices.end(), value) != choices.end()) {
                 return value;
             }
-            return std::string{ "line" };
+            return std::string("line");
         });
 
     program.add_argument("-V", "--verbose")
@@ -64,8 +64,7 @@ Parameters parse_arguments(int argc, char* argv[]){
 
     try {
         program.parse_args(argc, argv);
-    }
-    catch (const std::runtime_error& err) {
+    } catch (const std::runtime_error& err) {
         std::cout << err.what() << std::endl;
         std::cout << program;
         exit(0);
