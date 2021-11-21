@@ -1,18 +1,24 @@
 # Pixel Glitch
-A pixel sorting library.  
+A pixel sorting library.  Sorts pixels in an image based on input parameters and saves intermediate steps in the sort process as separate images that can then be used to create a video or gif.
 
-**Note** this library is still under development and not all planned features are available.
+**Note:** this library is still under development and not all planned features are available.
+- Only works on PNG images (for now)
+- Only saves final sorted image, no intermediate images (for now)
+- Only sorts in a straight line (for now)
+- Only sorts using `std::sort()` (for now)
+- Only sorts entire image, cannot sort segments (for now)
+- Sort value not yet exposed
 
 ## Examples
 
-| Original                  |  Sorted                               | Sorted                   |
-|:-------------------------:|:--------------------------------------|:-------------------------|
+| Original                  |  Sorted                               | Sorted                                       |
+|:-------------------------:|:--------------------------------------|:---------------------------------------------|
 |                           | `pixel-glitch images/profile.png`     | `pixel-glitch images/profile.png --reverse`  |
-|![](./images/profile.png)  |  ![](./images/profile_sorted.png)     | ![](./images/profile_sorted_reversed.png)    |
+|![](./docs/profile.png)    |  ![](./docs/profile_sorted.png)       | ![](./docs/profile_sorted_reversed.png)      |
 |                           | `pixel-glitch images/monterey.png`    | `pixel-glitch images/monterey.png --reverse` |
-|![](./images/monterey.png) |  ![](./images/monterey_sorted.png)    | ![](./images/monterey_sorted_reversed.png)   |
+|![](./docs/monterey.png)   |  ![](./docs/monterey_sorted.png)      | ![](./docs/monterey_sorted_reversed.png)     |
 |                           | `pixel-glitch images/sunset.png`      | `pixel-glitch images/sunset.png --reverse`   |
-|![](./images/sunset.png)   |  ![](./images/sunset_sorted.png)      | ![](./images/sunset_sorted_reversed.png)     |
+|![](./docs/sunset.png)     |  ![](./docs/sunset_sorted.png)        | ![](./docs/sunset_sorted_reversed.png)       |
 
 ## Compiling
 ```bash
