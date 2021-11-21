@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "image_matrix.hpp"
 #include "pixel.hpp"
 
 bool compare_pixels(const Pixel &x, const Pixel &y, bool reverse) { return reverse ? x.value < y.value : x.value > y.value; }
