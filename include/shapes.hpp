@@ -27,7 +27,7 @@ std::vector<Row> horizontal_line(unsigned char *image_buffer, int height, int wi
             green = pixel_offset[1];
             blue = pixel_offset[2];
             alpha = pixel_offset[3];
-            matrix[row][col] = Pixel{ red, green, blue, alpha, (uint8_t)(red * blue * green) };
+            matrix[row][col] = Pixel{ red, green, blue, alpha, (int)(red) };
         }
     }
     return matrix;
