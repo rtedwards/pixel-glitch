@@ -24,8 +24,5 @@ clean:
 compile:
 	clang++ -Wall -Wextra -Wno-missing-field-initializers -std=c++17 -g -I$(INCLUDE) -L$(LIB) src/main.cpp -o bin/pixel-glitch
 
-compile-window:
-	clang++ -Wall -Wextra -std=c++17 -g -Iinclude -I/opt/X11/include -L/opt/X11/lib -lX11 -lz -Dcimg_display src/main.cpp -o bin/pixel-glitch
-
-compile-lib:
-	clang++ -Wall -Wextra -std=c++17 -g -Iinclude -I/opt/X11/include -L/opt/X11/lib -lX11 -lz -ltiff -ljpeg -lpng -Dcimg_display src/main.cpp -o bin/pixel-glitch
+unit-tests:
+	clang++ -Wall -Wextra -Wno-missing-field-initializers -std=c++17 -g -I$(INCLUDE) -L$(LIB) tests/test_sorting.cpp -o bin/tests
