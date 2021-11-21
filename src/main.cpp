@@ -4,7 +4,7 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION  // needs to be in main.cpp
 
 #include "image_matrix.hpp"
-#include "parse_user_inputs.hpp"
+#include "parse_arguments.hpp"
 
 int main(int argc, char* argv[]) {
     auto args = parse_arguments(argc, argv);
