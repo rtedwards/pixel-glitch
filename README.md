@@ -5,14 +5,14 @@ A pixel sorting library.
 
 ## Examples
 
-| Original                  |  Sorted                               | Sorted                   |
-|:-------------------------:|:--------------------------------------|:-------------------------|
+| Original                  |  Sorted                               | Sorted                                       |
+|:-------------------------:|:--------------------------------------|:---------------------------------------------|
 |                           | `pixel-glitch images/profile.png`     | `pixel-glitch images/profile.png --reverse`  |
-|![](./images/profile.png)  |  ![](./images/profile_sorted.png)     | ![](./images/profile_sorted_reversed.png)    |
+|![](./docs/profile.png)    |  ![](./docs/profile_sorted.png)       | ![](./docs/profile_sorted_reversed.png)      |
 |                           | `pixel-glitch images/monterey.png`    | `pixel-glitch images/monterey.png --reverse` |
-|![](./images/monterey.png) |  ![](./images/monterey_sorted.png)    | ![](./images/monterey_sorted_reversed.png)   |
+|![](./docs/monterey.png)   |  ![](./docs/monterey_sorted.png)      | ![](./docs/monterey_sorted_reversed.png)     |
 |                           | `pixel-glitch images/sunset.png`      | `pixel-glitch images/sunset.png --reverse`   |
-|![](./images/sunset.png)   |  ![](./images/sunset_sorted.png)      | ![](./images/sunset_sorted_reversed.png)     |
+|![](./docs/sunset.png)     |  ![](./docs/sunset_sorted.png)        | ![](./docs/sunset_sorted_reversed.png)       |
 
 ## Compiling
 ```bash
