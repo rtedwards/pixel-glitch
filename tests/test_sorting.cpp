@@ -24,7 +24,7 @@ SCENARIO("Pixels can be compared by value", "[sorting, pixel]") {
             THEN("pixel_a.value == pixel_b.value") {
                 Pixel pixel_a = { 0x00, 0x00, 0x00, 0x00, 255 };
                 Pixel pixel_b = { 0x00, 0x00, 0x00, 0x00, 255 };
-                REQUIRE(compare_pixels(pixel_a, pixel_b, reverse) == false);
+                REQUIRE(compare_pixels(pixel_a, pixel_b, reverse) == true);
             }
         }
 
