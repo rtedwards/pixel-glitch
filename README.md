@@ -2,6 +2,12 @@
 A pixel sorting library.  Sorts pixels in an image based on input parameters and saves intermediate steps in the sort process as separate images that can then be used to create a video or gif.
 
 **Note:** this library is still under development and not all planned features are available.
+- Only works on PNG images (for now)
+- Only saves final sorted image, no intermediate images (for now)
+- Only sorts in a straight line (for now)
+- Only sorts using `std::sort()` (for now)
+- Only sorts entire image, cannot sort segments (for now)
+- Sort value not yet exposed
 
 ## Examples
 
