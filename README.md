@@ -1,7 +1,7 @@
 # Pixel Glitch
-A pixel sorting library.  
+A pixel sorting library.  Sorts pixels in an image based on input parameters and saves intermediate steps in the sort process as separate images that can then be used to create a video or gif.
 
-**Note** this library is still under development and not all planned features are available.
+**Note:** this library is still under development and not all planned features are available.
 
 ## Examples
 
