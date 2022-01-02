@@ -12,6 +12,11 @@ int main(int argc, char* argv[]) {
     if (args.verbose == true) {
         std::cout << "image: " << params.image_filename << std::endl;
         std::cout << "algorithm: " << params.algorithm << std::endl;
+        std::cout << "sort value: ";
+        for (const auto& i : params.sort_value) {
+            std::cout << i << ' ';
+        }
+        std::cout << std::endl;
         std::cout << "angle: " << params.angle << std::endl;
         std::cout << "percent: " << params.percent << std::endl;
         std::cout << "reverse: " << params.reverse << std::endl;
@@ -20,7 +25,7 @@ int main(int argc, char* argv[]) {
 
     Image image;
     image.load(args.image_filename)
-        .sort_image(args.shape, 3, args.reverse)
+        .sort_image(args.shape, args.sort_value, args.reverse)
         .save(std::string("images/sorted.png"), "png");
 
     // stbi_image_free(image);

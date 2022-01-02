@@ -2,16 +2,24 @@
 
 #pragma once
 
+#include <map>
 #include <vector>
 
 #include "pixel.hpp"
 
 using Row = std::vector<Pixel>;
 
-std::vector<Row> horizontal_line(unsigned char *image_buffer, int height, int width, int channels) {
-    // TODO: add parameter to calculate sort value
+// TODO: create enum or dict
+// enum class COLORS {
+//     R,
+//     G,
+//     B,
+//     A
+// };
 
+std::vector<Row> horizontal_line(unsigned char *image_buffer, int height, int width, int channels, std::string sort_value) {
     unsigned char *pixel_offset;
+    Colors colors;  // TODO: initialize to set size
     uint8_t red;
     uint8_t green;
     uint8_t blue;
@@ -27,8 +35,14 @@ std::vector<Row> horizontal_line(unsigned char *image_buffer, int height, int wi
             green = pixel_offset[1];
             blue = pixel_offset[2];
             alpha = pixel_offset[3];
-            matrix[row][col] = Pixel{ red, green, blue, alpha, (uint8_t)(red * blue * green) };
-        }
-    }
+
+            colors['r'] = pixel_offset[0];
+            colors['g'] = pixel_offset[1];
+            colors['b'] = pixel_offset[2];
+            colors['a'] = pixel_offset[3];
+
+            matrix[row][col] = Pixel{ red, green, blue, alpha, pixel_value(colors, sort_value) };
+        };
+    };
     return matrix;
 }

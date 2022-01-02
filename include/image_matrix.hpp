@@ -23,10 +23,10 @@ class Image {
 
     Image &load(std::string filename);
     Image &save(std::string filename, std::string image_type);
-    Image &sort_image(std::string sort_method, int color, bool reverse);
-    Image &sort_image_pixels(std::string sort_method, int color, bool reverse);
+    Image &sort_image(std::string sort_method, std::string sort_value, bool reverse);
+    Image &sort_image_pixels(std::string sort_method, std::string sort_value, bool reverse);
 
-    std::vector<PixelRow> &create_image_matrix(std::string shape);
+    std::vector<PixelRow> &create_image_matrix(std::string shape, std::string sort_value);
 
   private:
     unsigned char *image_buffer;
@@ -52,20 +52,20 @@ Image &Image::save(std::string filename, std::string image_type) {
     return *this;
 };
 
-std::vector<PixelRow> &Image::create_image_matrix(std::string shape) {
+std::vector<PixelRow> &Image::create_image_matrix(std::string shape, std::string sort_value) {
     // TODO: switch statement to call method according to shape
     std::vector<PixelRow> rows;
 
     if (shape == "line") {
-        matrix = horizontal_line(this->image_buffer, this->height, this->width, this->channels);
+        matrix = horizontal_line(this->image_buffer, this->height, this->width, this->channels, sort_value);
     } else {
         std::logic_error(shape + " Not Implemented!");
     }
     return matrix;
 }
 
-Image &Image::sort_image(std::string sort_method, int color, bool reverse) {
-    this->matrix = this->create_image_matrix(sort_method);
+Image &Image::sort_image(std::string sort_method, std::string sort_value, bool reverse) {
+    this->matrix = this->create_image_matrix(sort_method, sort_value);
 
     for (auto &row : matrix) {
         std::sort(row.begin(), row.end(), [reverse](Pixel x, Pixel y) { return compare_pixels(x, y, reverse); });

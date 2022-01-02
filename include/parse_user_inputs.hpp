@@ -2,10 +2,14 @@
 #define PARSE_USER_ARGUMENTS
 
 #include <argparse.hpp>
+#include <set>
+#include <typeinfo>
+#include <vector>
 
 struct Parameters {
     std::string image_filename;
     std::string algorithm;
+    std::string sort_value;
     float angle;
     float percent;
     bool reverse;
@@ -21,15 +25,20 @@ Parameters parse_arguments(int argc, char* argv[]) {
         .required();
 
     program.add_argument("-a", "--algorithm")
-        .help("sorting algorithm (bubblesort, heapsort, insertionsort, mergesort, quicksort")
+        .help("sorting algorithm (bubblesort, heapsort, insertionsort, mergesort, quicksort)")
         .default_value(std::string("quicksort"))
         .action([](const std::string& value) {
             static const std::vector<std::string> choices = { "bubblesort", "heapsort", "insertionsort", "mergesort", "quicksort" };
             if (std::find(choices.begin(), choices.end(), value) != choices.end()) {
                 return value;
             }
-            return std::string{ "quicksort" };
+            return std::string("quicksort");
         });
+
+    program.add_argument("-c", "--sort-color-value")
+        .help("color(s) to sort by any combination of (r, g, b, a) and (auto)")
+        .default_value(std::string("rgb"));
+    // TODO: sanitize input string
 
     program.add_argument("-a", "--angle")
         .help("sorting angle (degrees)")
@@ -72,6 +81,7 @@ Parameters parse_arguments(int argc, char* argv[]) {
 
     params.image_filename = program.get<std::string>("image");
     params.algorithm = program.get<std::string>("--algorithm");
+    params.sort_value = program.get<std::string>("--sort-color-value");
     params.angle = program.get<float>("--angle");
     params.percent = program.get<float>("--percent");
     params.reverse = program.get<bool>("--reverse");
