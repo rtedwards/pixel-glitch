@@ -24,7 +24,6 @@ class Image {
     Image &load(std::string filename);
     Image &save(std::string filename, std::string image_type);
     Image &sort_image(std::string sort_method, int color, bool reverse);
-    Image &sort_image_pixels(std::string sort_method, int color, bool reverse);
 
     std::vector<PixelRow> &create_image_matrix(std::string shape);
 

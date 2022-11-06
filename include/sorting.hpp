@@ -2,10 +2,9 @@
 
 #pragma once
 
-#include "image_matrix.hpp"
 #include "pixel.hpp"
 
-bool compare_pixels(const Pixel &x, const Pixel &y, bool reverse) { return reverse ? x.value < y.value : x.value > y.value; }
+bool compare_pixels(const Pixel &x, const Pixel &y, bool reverse) { return reverse ? x.value < y.value : x.value >= y.value; }
 
 // Calculates the pixel value to use for sorting
 // uint8_t pixel_value(std::string method) { std::logic_error("Not Implemented"); }
